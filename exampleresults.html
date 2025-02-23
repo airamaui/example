@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>View Submissions</title>
+</head>
+
+<body>
+    <h1>Submitted Answers</h1>
+
+    <div id="output"></div>
+
+    <button onclick="clearAnswers()">Clear All Answers</button>
+    <a href="index.html">Submit Another Answer</a>
+
+    <script src="script.js"></script>
+    <script>
+        // Display stored submissions
+        const submissions = JSON.parse(localStorage.getItem("submissions")) || [];
+
+        const outputDiv = document.getElementById("output");
+
+        if (submissions.length === 0) {
+            outputDiv.innerHTML = "<p>No submissions yet.</p>";
+        } else {
+            submissions.forEach((submission, index) => {
+                outputDiv.innerHTML += `
+                    <p><strong>Submission ${index + 1}:</strong></p>
+                    <p>Answer 1: ${submission.answer1}</p>
+                    <p>Answer 2: ${submission.answer2}</p>
+                    <p>Date: ${submission.date}</p>
+                    <hr>
+                `;
+            });
+        }
+    </script>
+</body>
+
+</html>
