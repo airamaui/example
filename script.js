@@ -1,10 +1,12 @@
-// Submit answers and store them in localStorage
+// Submit answers and send them to Google Sheets
 function submitAnswers() {
     const answer1 = document.getElementById("answer1").value;
     const answer2 = document.getElementById("answer2").value;
 
-    // Ensure answers are stored as an array of submissions
-    let submissions = JSON.parse(localStorage.getItem("submissions")) || [];
+    if (!answer1 || !answer2) {
+        alert("Please fill in both answers.");
+        return;
+    }
 
     // Create a new submission object
     const newSubmission = {
@@ -13,19 +15,29 @@ function submitAnswers() {
         date: new Date().toLocaleString(),
     };
 
-    // Store the new submission
-    submissions.push(newSubmission);
-    localStorage.setItem("submissions", JSON.stringify(submissions));
-
-    alert("Answers submitted successfully!");
-
-    // Clear input fields
-    document.getElementById("answer1").value = "";
-    document.getElementById("answer2").value = "";
+    // Send submission to Google Sheets via Web App
+    fetch('YOUR_WEB_APP_URL_HERE', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newSubmission),
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert("Answers submitted successfully!");
+        // Clear input fields
+        document.getElementById("answer1").value = "";
+        document.getElementById("answer2").value = "";
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert("Error submitting answers.");
+    });
 }
 
-// Clear all submissions
+// Clear all submissions (localStorage only)
 function clearAnswers() {
     localStorage.removeItem("submissions");
-    alert("All answers cleared!");
+    alert("Local submissions cleared!");
 }
