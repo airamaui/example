@@ -16,7 +16,7 @@ function submitAnswers() {
     };
 
     // Send submission to Google Sheets via Web App
-    fetch('YOUR_WEB_APP_URL_HERE', {
+    fetch(https://airamaui.github.io/example/index.html, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
