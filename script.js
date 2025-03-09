@@ -1,3 +1,8 @@
+// Ensure it's not inside another function
+function submitAnswers() {
+    console.log("Function works!");
+}
+
 // Submit answers and send them to Google Sheets
 function submitAnswers() {
     const answer1 = document.getElementById("answer1").value;
