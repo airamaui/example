@@ -16,20 +16,16 @@ function submitAnswers() {
     };
 
     // Send submission to Google Sheets via Web App
-fetch('https://api.example.com/data', {
-    headers: {
-        'Accept': 'application/json'
-    }
-})
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not OK');
-        }
-        return response.json();
+    fetch(https://airamaui.github.io/example/index.html, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newSubmission),
     })
-    .then(data => console.log(data))
-    .catch(error => console.error('Fetch error:', error));
-
+    .then(response => response.json())
+    .then(data => {
+        alert("Answers submitted successfully!");
         // Clear input fields
         document.getElementById("answer1").value = "";
         document.getElementById("answer2").value = "";
